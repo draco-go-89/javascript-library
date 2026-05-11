@@ -1,0 +1,19 @@
+# Node / npm
+node_modules/
+package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# dotenv
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# build / dist (in case you later add tooling)
+dist/
+build/
+

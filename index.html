@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Libraries — Complete Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Complete Reference · 2026</div>
+  <h1>JavaScript <span>Libraries</span><br>From Zero to Pro</h1>
+  <p>Everything you need to know about JS libraries — what they are, their types, popular picks, real code, and when to use which.</p>
+</div>
+
+<!-- TABS -->
+<div class="tabs-wrap">
+  <button class="tab active" onclick="show('basics')">📦 What is a Library?</button>
+  <button class="tab" onclick="show('types')">🗂️ Types of Libraries</button>
+  <button class="tab" onclick="show('dom')">🖼️ DOM Libraries</button>
+  <button class="tab" onclick="show('ui')">🎨 UI Frameworks</button>
+  <button class="tab" onclick="show('http')">🌐 HTTP / Data</button>
+  <button class="tab" onclick="show('utils')">🔧 Utility Libraries</button>
+  <button class="tab" onclick="show('animation')">✨ Animation</button>
+  <button class="tab" onclick="show('testing')">🧪 Testing</button>
+  <button class="tab" onclick="show('compare')">⚖️ Compare</button>
+  <button class="tab" onclick="show('when')">🧭 When to Use What</button>
+</div>
+
+<main>
+
+<!-- ══════════ BASICS ══════════ -->
+<div class="section active" id="basics">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(108,99,255,.15);">📦</div>
+    <div>
+      <h2>What is a JavaScript Library?</h2>
+      <p>The foundation — understanding what libraries are, why they exist, and how they differ from frameworks.</p>
+    </div>
+  </div>
+
+  <div class="intro-box">
+    A <strong>JavaScript Library</strong> is a pre-written collection of JavaScript code that you can import into your project to perform specific tasks — without writing everything from scratch.
+    Think of it like a <strong>toolbox</strong>: instead of building a hammer yourself, you just grab one from the box.
+
+    <br><br>
+    <strong>What you “get” from a library:</strong>
+    <ul>
+      <li><strong>Battle-tested logic</strong> (edge cases, browser quirks, performance considerations).</li>
+      <li><strong>Reusable APIs</strong> (functions, classes, or components you call from your code).</li>
+      <li><strong>Time savings</strong> (you focus on product features, not re-solving common problems).</li>
+    </ul>
+
+    <strong>What you still “own”:</strong>
+    The app logic, data flow, and UI/UX decisions remain yours. A library typically exposes utilities you can control.
+  </div>
+
+
+  <div class="code-section">
+    <h3>Without a Library vs With a Library</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">WITHOUT LIBRARY — manually fetch data</span>
+      </div>
+      <pre><span class="cm">// Old way — lots of code for a simple GET request</span>
+<span class="kw">const</span> xhr <span class="op">=</span> <span class="kw">new</span> <span class="fn">XMLHttpRequest</span>();
+xhr.<span class="fn">open</span>(<span class="str">'GET'</span>, <span class="str">'https://api.example.com/users'</span>);
+xhr.<span class="fn">onload</span> <span class="op">=</span> <span class="kw">function</span>() {
+  <span class="kw">if</span> (xhr.status <span class="op">===</span> <span class="num">200</span>) {
+    <span class="kw">const</span> data <span class="op">=</span> JSON.<span class="fn">parse</span>(xhr.responseText);
+    console.<span class="fn">log</span>(data);
+  }
+};
+xhr.<span class="fn">send</span>();</pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">WITH AXIOS LIBRARY — clean and simple</span>
+      </div>
+      <pre><span class="cm">// With Axios library — same result, 1 line</span>
+<span class="kw">const</span> data <span class="op">=</span> <span class="kw">await</span> axios.<span class="fn">get</span>(<span class="str">'https://api.example.com/users'</span>);
+console.<span class="fn">log</span>(data);</pre>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>🟢 Library vs Framework:</strong> A <strong>library</strong> is a tool YOU call when needed (you're in control). A <strong>framework</strong> calls YOUR code and provides the structure (it's in control). React = library. Angular = framework. Vue = both.
+  </div>
+
+  <div class="code-section">
+    <h3>How to Install and Use a Library</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">3 WAYS TO USE A LIBRARY</span>
+      </div>
+      <pre><span class="cm">// ── METHOD 1: CDN (paste in HTML, no install needed)</span>
+<span class="op">&lt;</span>script src<span class="op">=</span><span class="str">"https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"</span><span class="op">&gt;&lt;/</span>script<span class="op">&gt;</span>
+
+<span class="cm">// ── METHOD 2: npm (recommended for projects)</span>
+npm install axios           <span class="cm">// install it</span>
+<span class="kw">import</span> axios <span class="kw">from</span> <span class="str">'axios'</span>;  <span class="cm">// use it in your file</span>
+
+<span class="cm">// ── METHOD 3: yarn</span>
+yarn add axios</pre>
+    </div>
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Important:</strong> Every library adds size to your app (called "bundle size"). Don't install libraries for tiny tasks you can do in 5 lines of code. Only use them when they genuinely save significant time or complexity.
+  </div>
+</div>
+
+<!-- ══════════ TYPES ══════════ -->
+<div class="section" id="types">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(255,101,132,.15);">🗂️</div>
+    <div>
+      <h2>Types of JavaScript Libraries</h2>
+      <p>Libraries are organized by what problem they solve. Here's the complete map.</p>
+    </div>
+  </div>
+
+  <div class="flow">
+    <h3>JavaScript Library Ecosystem</h3>
+    <div class="flow-row">
+      <div class="flow-box" style="border-color:#6c63ff;color:#6c63ff;" tabindex="0" role="button" aria-expanded="false" data-detail-id="ecosystem">
+        JavaScript Libraries
+      </div>
+    </div>
+    <div style="color:var(--muted);margin-bottom:12px;font-size:1.2rem;">↓</div>
+    <div class="flow-row" style="gap:10px;">
+      <div class="flow-box" tabindex="0" role="button" aria-expanded="false" data-detail-id="dom">DOM Manipulation</div>
+      <div class="flow-box" tabindex="0" role="button" aria-expanded="false" data-detail-id="ui">UI / Components</div>
+      <div class="flow-box" tabindex="0" role="button" aria-expanded="false" data-detail-id="http">HTTP / Networking</div>
+      <div class="flow-box" tabindex="0" role="button" aria-expanded="false" data-detail-id="utils">Utilities</div>
+    </div>
+    <div style="color:var(--muted);margin-bottom:12px;font-size:1.2rem;">↓</div>
+    <div class="flow-row" style="gap:10px;">
+      <div class="flow-box" tabindex="0" role="button" aria-expanded="false" data-detail-id="animation">Animation</div>
+      <div class="flow-box" tabindex="0" role="button" aria-expanded="false" data-detail-id="charts">Data / Charts</div>
+      <div class="flow-box" tabindex="0" role="button" aria-expanded="false" data-detail-id="testing">Testing</div>
+      <div class="flow-box" tabindex="0" role="button" aria-expanded="false" data-detail-id="state">State Management</div>
+    </div>
+    <div style="color:var(--muted);margin-bottom:12px;font-size:1.2rem;">↓</div>
+    <div class="flow-row" style="gap:10px;">
+      <div class="flow-box" tabindex="0" role="button" aria-expanded="false" data-detail-id="forms">Form Validation</div>
+      <div class="flow-box" tabindex="0" role="button" aria-expanded="false" data-detail-id="datetime">Date / Time</div>
+      <div class="flow-box" tabindex="0" role="button" aria-expanded="false" data-detail-id="math">Math / Numbers</div>
+      <div class="flow-box" tabindex="0" role="button" aria-expanded="false" data-detail-id="security">Security / Auth</div>
+    </div>
+
+    <!-- Flow details panels (accordion) -->
+    <div class="flow-panel" data-flow-panel="ecosystem" hidden aria-hidden="true">
+      <h4>1) JavaScript Libraries Ecosystem (Overview)</h4>
+      <p>A <b>JavaScript library</b> is a reusable bundle of code you integrate into your project to solve a specific category of problems. Libraries usually expose <b>APIs</b> (functions, classes, hooks, components, or helpers) so you can call them instead of writing everything manually.</p>
+      <p><b>Core components</b> you’ll see across libraries:</p>
+      <ul>
+        <li><b>API surface</b> — the functions/classes/components the library provides.</li>
+        <li><b>Configuration</b> — options you pass in to control behavior (e.g., “baseURL” for HTTP clients).</li>
+        <li><b>Data contracts</b> — the expected input/output shapes (types, schemas, response formats).</li>
+        <li><b>Lifecycle</b> — when code runs (request time, render time, effect time, teardown).</li>
+        <li><b>Extensibility</b> — middleware, plugins, interceptors, adapters, or render hooks.</li>
+      </ul>
+      <p><b>How to read the ecosystem chart:</b> each box represents a <b>category</b> of problems—UI, networking, utilities, animation, etc.—and the libraries in that category typically share common implementation patterns.</p>
+    </div>
+
+    <div class="flow-panel" data-flow-panel="dom" hidden aria-hidden="true">
+      <h4>2) DOM Manipulation Libraries</h4>
+      <p><b>DOM</b> (Document Object Model) is the browser’s in-memory representation of your HTML page. DOM libraries help you <b>select</b> elements, <b>read/update</b> their content, and <b>handle events</b> without repeating low-level browser code.</p>
+      <h4>Definitions & components</h4>
+      <ul>
+        <li><b>Selector API</b> — CSS-like querying (find by id/class/tag).</li>
+        <li><b>Event API</b> — binding handlers, delegation, normalization.</li>
+        <li><b>Mutation API</b> — methods for changing text/HTML/styles/classes.</li>
+        <li><b>Animations (optional)</b> — built-in effects for basic UI motion.</li>
+      </ul>
+      <h4>Common types</h4>
+      <ul>
+        <li><b>Imperative DOM helpers</b> (jQuery-style): you directly change the DOM.</li>
+        <li><b>Component-lite wrappers</b>: small abstractions around DOM + events.</li>
+      </ul>
+      <p><b>Example uses:</b> admin panels, legacy pages, WordPress themes, or pages where you don’t need a full component framework.</p>
+    </div>
+
+    <div class="flow-panel" data-flow-panel="ui" hidden aria-hidden="true">
+      <h4>3) UI / Components Libraries & Frameworks</h4>
+      <p>UI libraries build interfaces out of <b>components</b>: reusable pieces of UI (Button, Modal, Table) that can be combined to form an app.</p>
+      <h4>Key definitions</h4>
+      <ul>
+        <li><b>Component</b> — a function/class that produces UI.</li>
+        <li><b>Props</b> — inputs passed into components.</li>
+        <li><b>State</b> — data that changes over time and drives UI updates.</li>
+        <li><b>Rendering model</b> — how UI is produced from state (reactive rendering).</li>
+        <li><b>Lifecycle / Effects</b> — when side effects run (data fetching, subscriptions).</li>
+      </ul>
+      <h4>Common types</h4>
+      <ul>
+        <li><b>Virtual DOM / reactive rendering</b> (React, Vue)</li>
+        <li><b>Compiler-based rendering</b> (Svelte)</li>
+        <li><b>Full application frameworks</b> (Angular) with routing + tooling</li>
+      </ul>
+      <p><b>Example uses:</b> SPAs, dashboards, complex forms, component-driven design systems.</p>
+    </div>
+
+    <div class="flow-panel" data-flow-panel="http" hidden aria-hidden="true">
+      <h4>4) HTTP / Data Fetching Libraries</h4>
+      <p>These libraries standardize how you talk to servers: sending requests, parsing responses, handling errors, and managing <b>loading</b>/<b>retry</b>/<b>cache</b>.</p>
+      <h4>Common components</h4>
+      <ul>
+        <li><b>Request/response layer</b> — GET/POST/PUT/DELETE, headers, payloads.</li>
+        <li><b>Interceptors / middleware</b> — inject auth tokens, log requests, handle errors.</li>
+        <li><b>Serialization</b> — JSON transformation and body formatting.</li>
+        <li><b>Caching & revalidation</b> — avoid repeated network calls.</li>
+      </ul>
+      <h4>Types</h4>
+      <ul>
+        <li><b>HTTP clients</b> — request wrappers (Axios).</li>
+        <li><b>Server-state libraries</b> — caching + hooks (React Query, SWR).</li>
+        <li><b>Fetch wrappers</b> — add conventions to native fetch.</li>
+      </ul>
+      <p><b>Example uses:</b> user profiles, search pages, dashboards, syncing server state.</p>
+    </div>
+
+    <div class="flow-panel" data-flow-panel="utils" hidden aria-hidden="true">
+      <h4>5) Utility Libraries</h4>
+      <p>Utility libraries provide battle-tested helpers for everyday tasks: manipulating arrays/objects/strings, functional transforms, deep cloning, throttling/debouncing, etc.</p>
+      <h4>Definitions</h4>
+      <ul>
+        <li><b>Pure helpers</b> — deterministic functions: sort, group, map, filter.</li>
+        <li><b>Performance helpers</b> — debounce/throttle to reduce work.</li>
+        <li><b>Data safety helpers</b> — deep clone, immutability-friendly patterns.</li>
+      </ul>
+      <h4>Types</h4>
+      <ul>
+        <li><b>General-purpose</b> (Lodash, Underscore)</li>
+        <li><b>Functional programming</b> (Ramda)</li>
+        <li><b>Date/time-focused utilities</b> (date-fns in your chart)</li>
+      </ul>
+      <p><b>Example uses:</b> data normalization, analytics pipelines, UI data transforms before rendering.</p>
+    </div>
+
+    <div class="flow-panel" data-flow-panel="animation" hidden aria-hidden="true">
+      <h4>6) Animation & Motion Libraries</h4>
+      <p>Animation libraries produce smooth motion: transitions, timelines, scroll-linked effects, physics-like movement, and sequencing.</p>
+      <h4>Common components</h4>
+      <ul>
+        <li><b>Tweening</b> — interpolate values over time.</li>
+        <li><b>Easing functions</b> — control acceleration/deceleration.</li>
+        <li><b>Timelines</b> — sequence multiple animations.</li>
+        <li><b>Targets</b> — DOM elements or UI components to animate.</li>
+      </ul>
+      <h4>Types</h4>
+      <ul>
+        <li><b>Imperative tween engines</b> (GSAP, Anime.js)</li>
+        <li><b>Declarative animation for UI frameworks</b> (Framer Motion)</li>
+        <li><b>3D/WebGL animation</b> (Three.js)</li>
+      </ul>
+    </div>
+
+    <div class="flow-panel" data-flow-panel="charts" hidden aria-hidden="true">
+      <h4>7) Data / Charts Libraries</h4>
+      <p>Visualization libraries turn raw data into visuals: line/bar charts, interactive tooltips, maps, and sometimes custom SVG/canvas rendering.</p>
+      <h4>Key definitions</h4>
+      <ul>
+        <li><b>Data binding</b> — mapping data points to visual marks.</li>
+        <li><b>Scales</b> — converting data domain → pixel range.</li>
+        <li><b>Rendering layer</b> — SVG, Canvas, WebGL.</li>
+        <li><b>Interactivity</b> — hover, zoom, selection, filtering.</li>
+      </ul>
+      <h4>Types</h4>
+      <ul>
+        <li><b>Charting libraries</b> (Chart.js) — faster setup, less customization.</li>
+        <li><b>Visualization toolkits</b> (D3.js) — maximum control, steeper learning curve.</li>
+      </ul>
+    </div>
+
+    <div class="flow-panel" data-flow-panel="testing" hidden aria-hidden="true">
+      <h4>8) Testing Libraries</h4>
+      <p>Testing libraries help verify correctness automatically: unit tests for functions, integration tests for flows, and end-to-end tests for browser behavior.</p>
+      <h4>Definitions</h4>
+      <ul>
+        <li><b>Assertions</b> — expected outputs/conditions.</li>
+        <li><b>Test runner</b> — executes tests and reports results.</li>
+        <li><b>Mocks/stubs</b> — isolate units from external dependencies.</li>
+        <li><b>Browser automation</b> — drive UI like a user for E2E tests.</li>
+      </ul>
+      <h4>Types</h4>
+      <ul>
+        <li><b>Unit testing</b> (Jest/Vitest)</li>
+        <li><b>E2E testing</b> (Cypress, Playwright-style)</li>
+      </ul>
+    </div>
+
+    <div class="flow-panel" data-flow-panel="state" hidden aria-hidden="true">
+      <h4>9) State Management Libraries</h4>
+      <p>State management libraries help manage application data that changes over time across many components—especially in larger apps.</p>
+      <h4>Definitions</h4>
+      <ul>
+        <li><b>Global/shared state</b> — user/auth info, selected items, settings.</li>
+        <li><b>Actions/events</b> — intentions to change state.</li>
+        <li><b>Reducers/logic</b> — how state transitions happen.</li>
+        <li><b>Selectors</b> — derive data for components.</li>
+      </ul>
+      <h4>Types</h4>
+      <ul>
+        <li><b>Flux/Redux-style</b> (Redux)</li>
+        <li><b>Hook-based lightweight stores</b> (Zustand)</li>
+        <li><b>Framework-integrated stores</b> (Pinia for Vue)</li>
+      </ul>
+    </div>
+
+    <div class="flow-panel" data-flow-panel="forms" hidden aria-hidden="true">
+      <h4>10) Form Validation & Schema Libraries</h4>
+      <p>Form libraries make user input predictable by combining state management + validation + error messaging.</p>
+      <h4>Definitions</h4>
+      <ul>
+        <li><b>Form state</b> — current values, touched fields, submission status.</li>
+        <li><b>Validation rules</b> — constraints like required length, email format, min/max.</li>
+        <li><b>Schema validation</b> — validate data against a defined schema (often with reusable types).</li>
+      </ul>
+      <h4>Types</h4>
+      <ul>
+        <li><b>React form state</b> (React Hook Form)</li>
+        <li><b>Schema validators</b> (Zod/Yup)</li>
+      </ul>
+    </div>
+
+    <div class="flow-panel" data-flow-panel="datetime" hidden aria-hidden="true">
+      <h4>11) Date / Time Libraries</h4>
+      <p>Working with dates is tricky: time zones, formatting, parsing, and relative computations. Date/time libraries standardize these operations.</p>
+      <h4>Core operations</h4>
+      <ul>
+        <li><b>Formatting</b> (e.g., “09 May 2024”)</li>
+        <li><b>Parsing</b> and converting inputs safely</li>
+        <li><b>Arithmetic</b> (add/subtract days)</li>
+        <li><b>Comparison</b> (isAfter, differenceInDays)</li>
+      </ul>
+    </div>
+
+    <div class="flow-panel" data-flow-panel="math" hidden aria-hidden="true">
+      <h4>12) Math / Numbers Libraries</h4>
+      <p>Math libraries focus on numeric correctness and convenience: precision helpers, formatting, statistical calculations, and domain-specific numeric utilities.</p>
+      <h4>Types</h4>
+      <ul>
+        <li><b>Formatting helpers</b> — convert numbers into human-friendly strings.</li>
+        <li><b>Computation helpers</b> — statistical or numeric routines.</li>
+        <li><b>Big-number / precision</b> — safer arithmetic for large values.</li>
+      </ul>
+      <p><b>Example uses:</b> financial apps, scientific dashboards, data import/export validation.</p>
+    </div>
+
+    <div class="flow-panel" data-flow-panel="security" hidden aria-hidden="true">
+      <h4>13) Security / Auth Libraries</h4>
+      <p>Security libraries help implement authentication and protect data flows. They typically handle hashing, token management, and secure request patterns.</p>
+      <h4>Common components</h4>
+      <ul>
+        <li><b>Auth flows</b> — login, logout, session handling.</li>
+        <li><b>Token utilities</b> — JWT parsing/verification patterns.</li>
+        <li><b>Crypto primitives</b> — hashing, signing, random generation.</li>
+      </ul>
+      <h4>Types</h4>
+      <ul>
+        <li><b>Client-side auth helpers</b></li>
+        <li><b>Crypto utility libs</b> for safe hashing/signing</li>
+      </ul>
+      <p><b>Security note:</b> prefer well-audited libraries and avoid inventing custom crypto/auth logic.</p>
+    </div>
+  </div>
+
+  <div class="lib-grid">
+    <div class="lib-card c-purple" tabindex="0" role="button" aria-expanded="false">
+      <div class="lib-card-top">
+        <div class="lib-icon">🖼️</div>
+        <div>
+          <div class="lib-name">DOM Libraries</div>
+          <div class="lib-badge" style="background:rgba(108,99,255,.15);color:#6c63ff;">Manipulation</div>
+        </div>
+      </div>
+      <div class="lib-desc">Control HTML elements, handle events, change styles dynamically. The oldest and most fundamental type.</div>
+      <div class="lib-uses">
+        <span class="use-tag">jQuery</span>
+        <span class="use-tag">Vanilla JS</span>
+        <span class="use-tag">Zepto</span>
+      </div>
+      <div class="lib-more">
+        <h4>Definition</h4>
+        <p>DOM libraries help you select elements, read/update content, manage events, and perform common UI behaviors—without writing repetitive browser-manipulation code.</p>
+        <h4>What problems they solve</h4>
+        <ul>
+          <li><b>Element selection</b> using CSS-like selectors.</li>
+          <li><b>Event handling</b> (click, key events, delegation).</li>
+          <li><b>Imperative UI updates</b> (change text/HTML/styles).</li>
+        </ul>
+        <h4>Common patterns</h4>
+        <ul>
+          <li>Bind events once, update the DOM on user actions.</li>
+          <li>Use reusable helpers for selectors and class toggling.</li>
+        </ul>
+        <h4>Types</h4>
+        <ul>
+          <li><b>Imperative</b>: direct DOM mutations (classic jQuery style).</li>
+          <li><b>Light wrapper</b>: small utilities around query + events.</li>
+          <li><b>Progressive enhancement helpers</b>: normalize behaviors across browsers.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lib-card c-pink" tabindex="0" role="button" aria-expanded="false">
+      <div class="lib-card-top">
+        <div class="lib-icon">🎨</div>
+        <div>
+          <div class="lib-name">UI Frameworks</div>
+          <div class="lib-badge" style="background:rgba(255,101,132,.15);color:#ff6584;">Components</div>
+        </div>
+      </div>
+      <div class="lib-desc">Build complete user interfaces using reusable components. The most in-demand category today.</div>
+      <div class="lib-uses">
+        <span class="use-tag">React</span>
+        <span class="use-tag">Vue</span>
+        <span class="use-tag">Svelte</span>
+        <span class="use-tag">Angular</span>
+      </div>
+      <div class="lib-more">
+        <h4>Definition</h4>
+        <p>UI frameworks help you build full apps by providing a component model, state updates, and rendering rules—so your UI stays consistent with your data.</p>
+        <h4>What problems they solve</h4>
+        <ul>
+          <li><b>Component composition</b> for reusable UI building blocks.</li>
+          <li><b>State-driven rendering</b> so the UI updates automatically.</li>
+          <li><b>Large-app structure</b> (routing, data fetching, lifecycle).</li>
+        </ul>
+        <h4>Common patterns</h4>
+        <ul>
+          <li>Unidirectional data flow + reactive updates.</li>
+          <li>Reusable components + props/inputs.</li>
+          <li>Modular state and side effects.</li>
+        </ul>
+        <h4>Types</h4>
+        <ul>
+          <li><b>SPA component frameworks</b> (React, Vue).</li>
+          <li><b>Compiler-based</b> (Svelte).</li>
+          <li><b>Full-stack frameworks</b> (Angular-style includes many built-in conventions).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lib-card c-blue" tabindex="0" role="button" aria-expanded="false">
+      <div class="lib-card-top">
+        <div class="lib-icon">🌐</div>
+        <div>
+          <div class="lib-name">HTTP / Data Fetching</div>
+          <div class="lib-badge" style="background:rgba(56,189,248,.15);color:#38bdf8;">Networking</div>
+        </div>
+      </div>
+      <div class="lib-desc">Make API calls, handle responses, manage loading/error states, fetch data from servers.</div>
+      <div class="lib-uses">
+        <span class="use-tag">Axios</span>
+        <span class="use-tag">SWR</span>
+        <span class="use-tag">React Query</span>
+        <span class="use-tag">Fetch API</span>
+      </div>
+      <div class="lib-more">
+        <h4>Definition</h4>
+        <p>HTTP/data fetching libraries standardize how your app requests data, parses responses, and handles errors—often including retries and caching.</p>
+        <h4>What problems they solve</h4>
+        <ul>
+          <li><b>Network requests</b> (GET/POST/PUT/DELETE) with consistent configuration.</li>
+          <li><b>Auth & headers</b> via interceptors/middleware.</li>
+          <li><b>Server state management</b> (loading, error, caching, revalidation).</li>
+        </ul>
+        <h4>Common patterns</h4>
+        <ul>
+          <li>Request wrappers around native fetch/XHR.</li>
+          <li>Hook-based fetching with lifecycle-aware updates.</li>
+          <li>Centralized error handling + retries.</li>
+        </ul>
+        <h4>Types</h4>
+        <ul>
+          <li><b>HTTP clients</b>: request/response wrappers (Axios).</li>
+          <li><b>Server-state libs</b>: caching + background sync (SWR/React Query).</li>
+          <li><b>Light fetch wrappers</b>: convention helpers over fetch.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lib-card c-green" tabindex="0" role="button" aria-expanded="false">
+      <div class="lib-card-top">
+        <div class="lib-icon">🔧</div>
+        <div>
+          <div class="lib-name">Utility Libraries</div>
+          <div class="lib-badge" style="background:rgba(67,233,123,.15);color:#43e97b;">Helpers</div>
+        </div>
+      </div>
+      <div class="lib-desc">General-purpose helpers for arrays, objects, strings, dates. Save hours of writing common logic.</div>
+      <div class="lib-uses">
+        <span class="use-tag">Lodash</span>
+        <span class="use-tag">Underscore</span>
+        <span class="use-tag">Ramda</span>
+        <span class="use-tag">date-fns</span>
+      </div>
+      <div class="lib-more">
+        <h4>Definition</h4>
+        <p>Utility libraries provide reliable “building block” functions for common programming tasks: transforming data, cloning safely, and controlling execution timing.</p>
+        <h4>What problems they solve</h4>
+        <ul>
+          <li><b>Data transformation</b> (map/filter/reduce-like helpers, grouping, sorting).</li>
+          <li><b>Immutability & safety</b> (cloneDeep, safe access patterns).</li>
+          <li><b>Performance controls</b> (debounce/throttle).</li>
+        </ul>
+        <h4>Common patterns</h4>
+        <ul>
+          <li>Chain transformations for readability.</li>
+          <li>Use memoization/caching utilities when needed.</li>
+          <li>Prefer pure helpers when composing logic.</li>
+        </ul>
+        <h4>Types</h4>
+        <ul>
+          <li><b>General-purpose</b> (Lodash/Underscore).</li>
+          <li><b>Functional-first</b> (Ramda-style).</li>
+          <li><b>Domain utilities</b> (date-fns for date/time).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lib-card c-orange" tabindex="0" role="button" aria-expanded="false">
+      <div class="lib-card-top">
+        <div class="lib-icon">✨</div>
+        <div>
+          <div class="lib-name">Animation Libraries</div>
+          <div class="lib-badge" style="background:rgba(247,151,30,.15);color:#f7971e;">Motion</div>
+        </div>
+      </div>
+      <div class="lib-desc">Animate elements on screen — fades, slides, scroll effects, complex timelines, physics-based motion.</div>
+      <div class="lib-uses">
+        <span class="use-tag">GSAP</span>
+        <span class="use-tag">Framer Motion</span>
+        <span class="use-tag">Anime.js</span>
+        <span class="use-tag">Three.js</span>
+      </div>
+      <div class="lib-more">
+        <h4>Definition</h4>
+        <p>Animation libraries interpolate visual properties over time so you can build smooth transitions, sequences, and interactive motion.</p>
+        <h4>What problems they solve</h4>
+        <ul>
+          <li><b>Smooth transitions</b> (opacity, position, transforms).</li>
+          <li><b>Sequencing</b> via timelines/stagger.</li>
+          <li><b>Performance</b> by using optimized rendering loops and easing.</li>
+        </ul>
+        <h4>Common patterns</h4>
+        <ul>
+          <li>Animate DOM targets with easing + durations.</li>
+          <li>Scroll-linked effects and event-driven animations.</li>
+          <li>Declarative motion for component UIs.</li>
+        </ul>
+        <h4>Types</h4>
+        <ul>
+          <li><b>Imperative tween engines</b> (GSAP, Anime.js).</li>
+          <li><b>Declarative animation</b> (Framer Motion).</li>
+          <li><b>3D/WebGL animation</b> (Three.js).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lib-card c-yellow" tabindex="0" role="button" aria-expanded="false">
+      <div class="lib-card-top">
+        <div class="lib-icon">📊</div>
+        <div>
+          <div class="lib-name">Data Visualization</div>
+          <div class="lib-badge" style="background:rgba(251,191,36,.15);color:#fbbf24;">Charts</div>
+        </div>
+      </div>
+      <div class="lib-desc">Turn raw data into beautiful, interactive charts, graphs, maps, and infographics.</div>
+      <div class="lib-uses">
+        <span class="use-tag">D3.js</span>
+        <span class="use-tag">Chart.js</span>
+        <span class="use-tag">Recharts</span>
+        <span class="use-tag">Highcharts</span>
+      </div>
+      <div class="lib-more">
+        <h4>Definition</h4>
+        <p>Data visualization libraries convert datasets into visual representations (SVG/Canvas/WebGL) with interactivity like tooltips, zooming, and selection.</p>
+        <h4>What problems they solve</h4>
+        <ul>
+          <li><b>Scales</b>: map data domain to screen coordinates.</li>
+          <li><b>Rendering</b>: draw marks (bars/lines/points) efficiently.</li>
+          <li><b>Interactivity</b>: hover, legends, filtering.</li>
+        </ul>
+        <h4>Common patterns</h4>
+        <ul>
+          <li>Data-to-visual mapping pipelines.</li>
+          <li>Responsive layout handling.</li>
+          <li>Event handlers for tooltips and selection.</li>
+        </ul>
+        <h4>Types</h4>
+        <ul>
+          <li><b>Charting</b> (ready-made charts, quicker setup).</li>
+          <li><b>Visualization toolkits</b> (custom control, steeper learning curve).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lib-card c-purple" tabindex="0" role="button" aria-expanded="false">
+      <div class="lib-card-top">
+        <div class="lib-icon">🧪</div>
+        <div>
+          <div class="lib-name">Testing Libraries</div>
+          <div class="lib-badge" style="background:rgba(108,99,255,.15);color:#6c63ff;">QA</div>
+        </div>
+      </div>
+      <div class="lib-desc">Automatically test your code to ensure it works correctly and doesn't break when you make changes.</div>
+      <div class="lib-uses">
+        <span class="use-tag">Jest</span>
+        <span class="use-tag">Mocha</span>
+        <span class="use-tag">Cypress</span>
+        <span class="use-tag">Vitest</span>
+      </div>
+      <div class="lib-more">
+        <h4>Definition</h4>
+        <p>Testing libraries let you write automated checks so bugs are caught early and refactors don’t break existing behavior.</p>
+        <h4>What problems they solve</h4>
+        <ul>
+          <li><b>Correctness</b> via assertions.</li>
+          <li><b>Regression prevention</b> (tests run after changes).</li>
+          <li><b>Isolation</b> using mocks/stubs for deterministic tests.</li>
+        </ul>
+        <h4>Common patterns</h4>
+        <ul>
+          <li>Arrange/Act/Assert test structure.</li>
+          <li>Test pyramid (unit → integration → E2E).</li>
+          <li>CI-friendly test runners.</li>
+        </ul>
+        <h4>Types</h4>
+        <ul>
+          <li><b>Unit testing</b> (Jest/Vitest).</li>
+          <li><b>E2E/UI testing</b> (Cypress-style).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lib-card c-pink" tabindex="0" role="button" aria-expanded="false">
+      <div class="lib-card-top">
+        <div class="lib-icon">📋</div>
+        <div>
+          <div class="lib-name">Form Libraries</div>
+          <div class="lib-badge" style="background:rgba(255,101,132,.15);color:#ff6584;">Validation</div>
+        </div>
+      </div>
+      <div class="lib-desc">Handle form state, validation, error messages, and submission. Essential for any app with user input.</div>
+      <div class="lib-uses">
+        <span class="use-tag">React Hook Form</span>
+        <span class="use-tag">Formik</span>
+        <span class="use-tag">Yup</span>
+        <span class="use-tag">Zod</span>
+      </div>
+      <div class="lib-more">
+        <h4>Definition</h4>
+        <p>Form libraries unify state, validation, and error presentation so your UI stays consistent as users type, submit, and recover from invalid input.</p>
+        <h4>What problems they solve</h4>
+        <ul>
+          <li><b>Form state</b> (values, touched fields, submission status).</li>
+          <li><b>Validation</b> rules and error messages.</li>
+          <li><b>Submission</b> flow with success/error handling.</li>
+        </ul>
+        <h4>Common patterns</h4>
+        <ul>
+          <li>Schema-driven validation with reusable constraints.</li>
+          <li>Controlled/uncontrolled field strategies for performance.</li>
+          <li>Field-level error rendering for UX clarity.</li>
+        </ul>
+        <h4>Types</h4>
+        <ul>
+          <li><b>Form state management</b> (React Hook Form, Formik).</li>
+          <li><b>Schema validation</b> (Yup, Zod).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ DOM ══════════ -->
+<div class="section" id="dom">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(108,99,255,.15);">🖼️</div>
+    <div>
+      <h2>DOM Manipulation — jQuery</h2>
+      <p>The grandfather of JavaScript libraries. Still used in millions of websites today.</p>
+    </div>
+  </div>
+
+  <div class="intro-box">
+    <strong>jQuery</strong> was created in 2006 to solve a big problem: browsers all behaved differently, and basic tasks like "change the text of this element" required a ton of code. jQuery made it easy. Today, browsers are standardized, so jQuery is less necessary — but understanding it is valuable because so many legacy codebases still use it.
+  </div>
+
+  <div class="code-section">
+    <h3>jQuery — Core Functions</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">JQUERY ESSENTIALS</span>
+      </div>
+      <pre><span class="cm">// ── SELECTING ELEMENTS (like CSS selectors)</span>
+$(<span class="str">'#myId'</span>)           <span class="cm">// select by ID</span>
+$(<span class="str">'.myClass'</span>)        <span class="cm">// select by class</span>
+$(<span class="str">'p'</span>)               <span class="cm">// select all &lt;p&gt; tags</span>
+$(<span class="str">'ul li:first'</span>)    <span class="cm">// select first &lt;li&gt; inside &lt;ul&gt;</span>
+
+<span class="cm">// ── READING / CHANGING CONTENT</span>
+$(<span class="str">'#title'</span>).<span class="fn">text</span>();              <span class="cm">// get text</span>
+$(<span class="str">'#title'</span>).<span class="fn">text</span>(<span class="str">'New Title'</span>);    <span class="cm">// set text</span>
+$(<span class="str">'#box'</span>).<span class="fn">html</span>(<span class="str">'&lt;b&gt;Bold!&lt;/b&gt;'</span>);  <span class="cm">// set HTML</span>
+$(<span class="str">'input'</span>).<span class="fn">val</span>();               <span class="cm">// get input value</span>
+
+<span class="cm">// ── CHANGING CSS</span>
+$(<span class="str">'.box'</span>).<span class="fn">css</span>(<span class="str">'color'</span>, <span class="str">'red'</span>);
+$(<span class="str">'.box'</span>).<span class="fn">css</span>({ color: <span class="str">'red'</span>, fontSize: <span class="str">'20px'</span> });
+
+<span class="cm">// ── ADD / REMOVE CLASSES</span>
+$(<span class="str">'.card'</span>).<span class="fn">addClass</span>(<span class="str">'active'</span>);
+$(<span class="str">'.card'</span>).<span class="fn">removeClass</span>(<span class="str">'active'</span>);
+$(<span class="str">'.card'</span>).<span class="fn">toggleClass</span>(<span class="str">'active'</span>);
+
+<span class="cm">// ── EVENT HANDLING</span>
+$(<span class="str">'#btn'</span>).<span class="fn">click</span>(<span class="kw">function</span>() {
+  <span class="fn">alert</span>(<span class="str">'Button clicked!'</span>);
+});
+
+$(<span class="str">'input'</span>).<span class="fn">on</span>(<span class="str">'keyup'</span>, <span class="kw">function</span>() {
+  console.<span class="fn">log</span>($(<span class="kw">this</span>).<span class="fn">val</span>());  <span class="cm">// log as user types</span>
+});
+
+<span class="cm">// ── ANIMATIONS (built-in)</span>
+$(<span class="str">'#box'</span>).<span class="fn">hide</span>();           <span class="cm">// hide instantly</span>
+$(<span class="str">'#box'</span>).<span class="fn">fadeIn</span>(<span class="num">500</span>);      <span class="cm">// fade in over 500ms</span>
+$(<span class="str">'#box'</span>).<span class="fn">slideDown</span>(<span class="num">300</span>);   <span class="cm">// slide down</span>
+$(<span class="str">'#box'</span>).<span class="fn">animate</span>({ left: <span class="str">'100px'</span> }, <span class="num">600</span>); <span class="cm">// custom</span>
+
+<span class="cm">// ── AJAX (HTTP calls)</span>
+$.<span class="fn">ajax</span>({
+  url: <span class="str">'https://api.example.com/data'</span>,
+  method: <span class="str">'GET'</span>,
+  success: <span class="kw">function</span>(response) { console.<span class="fn">log</span>(response); },
+  error:   <span class="kw">function</span>(err)      { console.<span class="fn">log</span>(err); }
+});</pre>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>🟢 When to use jQuery:</strong> When working on legacy projects, WordPress themes, or when you need broad browser support without a build tool. For new projects, use vanilla JS or React instead.
+  </div>
+</div>
+
+<!-- ══════════ UI ══════════ -->
+<div class="section" id="ui">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(255,101,132,.15);">🎨</div>
+    <div>
+      <h2>UI Libraries & Frameworks</h2>
+      <p>React, Vue, Svelte — building modern user interfaces with components.</p>
+    </div>
+  </div>
+
+  <div class="intro-box">
+    Modern web apps are built with <strong>components</strong> — reusable pieces of UI (like a Button, Card, or Navbar). UI libraries/frameworks give you the system to build, manage, and connect these components efficiently, handling the hardest part: keeping the UI in sync with your data.
+  </div>
+
+  <div class="code-section">
+    <h3>React — The Most Popular UI Library</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">REACT — CORE CONCEPTS</span>
+      </div>
+      <pre><span class="cm">// ── 1. COMPONENT — a function that returns UI</span>
+<span class="kw">function</span> <span class="fn">Greeting</span>({ name }) {
+  <span class="kw">return</span> <span class="op">&lt;</span>h1<span class="op">&gt;</span>Hello, {name}!<span class="op">&lt;/</span>h1<span class="op">&gt;</span>;   <span class="cm">// JSX — HTML inside JS</span>
+}
+
+<span class="cm">// ── 2. STATE — data that changes over time</span>
+<span class="kw">import</span> { useState } <span class="kw">from</span> <span class="str">'react'</span>;
+
+<span class="kw">function</span> <span class="fn">Counter</span>() {
+  <span class="kw">const</span> [count, setCount] <span class="op">=</span> <span class="fn">useState</span>(<span class="num">0</span>);  <span class="cm">// count starts at 0</span>
+  
+  <span class="kw">return</span> (
+    <span class="op">&lt;</span>div<span class="op">&gt;</span>
+      <span class="op">&lt;</span>p<span class="op">&gt;</span>Count: {count}<span class="op">&lt;/</span>p<span class="op">&gt;</span>
+      <span class="op">&lt;</span>button onClick<span class="op">=</span>{() <span class="op">=&gt;</span> <span class="fn">setCount</span>(count <span class="op">+</span> <span class="num">1</span>)<span class="op">}&gt;</span>+1<span class="op">&lt;/</span>button<span class="op">&gt;</span>
+    <span class="op">&lt;/</span>div<span class="op">&gt;</span>
+  );
+}
+
+<span class="cm">// ── 3. EFFECT — run code when something changes</span>
+<span class="kw">import</span> { useEffect } <span class="kw">from</span> <span class="str">'react'</span>;
+
+<span class="kw">function</span> <span class="fn">UserProfile</span>({ userId }) {
+  <span class="kw">const</span> [user, setUser] <span class="op">=</span> <span class="fn">useState</span>(<span class="kw">null</span>);
+
+  <span class="fn">useEffect</span>(() <span class="op">=&gt;</span> {
+    <span class="cm">// runs every time userId changes</span>
+    fetch(<span class="str">`/api/users/${userId}`</span>)
+      .<span class="fn">then</span>(r <span class="op">=&gt;</span> r.<span class="fn">json</span>())
+      .<span class="fn">then</span>(setUser);
+  }, [userId]);
+
+  <span class="kw">if</span> (<span class="op">!</span>user) <span class="kw">return</span> <span class="op">&lt;</span>p<span class="op">&gt;</span>Loading...<span class="op">&lt;/</span>p<span class="op">&gt;</span>;
+  <span class="kw">return</span> <span class="op">&lt;</span>h2<span class="op">&gt;</span>{user.name}<span class="op">&lt;/</span>h2<span class="op">&gt;</span>;
+}</pre>
+    </div>
+  </div>
+
+  <div class="code-section">
+    <h3>Vue.js — The Progressive Framework</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">VUE 3 — COMPOSITION API</span>
+      </div>
+      <pre><span class="op">&lt;</span>template<span class="op">&gt;</span>
+  <span class="op">&lt;</span>div<span class="op">&gt;</span>
+    <span class="op">&lt;</span>p<span class="op">&gt;</span>Count: {{ count }}<span class="op">&lt;/</span>p<span class="op">&gt;</span>
+    <span class="op">&lt;</span>button @click<span class="op">=</span><span class="str">"increment"</span><span class="op">&gt;</span>+1<span class="op">&lt;/</span>button<span class="op">&gt;</span>
+  <span class="op">&lt;/</span>div<span class="op">&gt;</span>
+<span class="op">&lt;/</span>template<span class="op">&gt;</span>
+
+<span class="op">&lt;</span>script setup<span class="op">&gt;</span>
+<span class="kw">import</span> { ref } <span class="kw">from</span> <span class="str">'vue'</span>;
+
+<span class="kw">const</span> count <span class="op">=</span> <span class="fn">ref</span>(<span class="num">0</span>);                    <span class="cm">// reactive variable</span>
+<span class="kw">const</span> increment <span class="op">=</span> () <span class="op">=&gt;</span> count.value<span class="op">++</span>;
+<span class="op">&lt;/</span>script<span class="op">&gt;</span></pre>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ HTTP ══════════ -->
+<div class="section" id="http">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(56,189,248,.15);">🌐</div>
+    <div>
+      <h2>HTTP & Data Fetching Libraries</h2>
+      <p>Communicate with APIs and servers — the backbone of modern web apps.</p>
+    </div>
+  </div>
+
+  <div class="code-section">
+    <h3>Axios — The Most Popular HTTP Library</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">AXIOS — ALL KEY METHODS</span>
+      </div>
+      <pre><span class="kw">import</span> axios <span class="kw">from</span> <span class="str">'axios'</span>;
+
+<span class="cm">// ── GET — fetch data from server</span>
+<span class="kw">const</span> response <span class="op">=</span> <span class="kw">await</span> axios.<span class="fn">get</span>(<span class="str">'/api/users'</span>);
+console.<span class="fn">log</span>(response.data);   <span class="cm">// your data is here</span>
+
+<span class="cm">// ── POST — send data to server</span>
+<span class="kw">const</span> newUser <span class="op">=</span> <span class="kw">await</span> axios.<span class="fn">post</span>(<span class="str">'/api/users'</span>, {
+  name: <span class="str">'Ravi'</span>,
+  email: <span class="str">'ravi@example.com'</span>
+});
+
+<span class="cm">// ── PUT — update existing data</span>
+<span class="kw">await</span> axios.<span class="fn">put</span>(<span class="str">'/api/users/1'</span>, { name: <span class="str">'Ravi Kumar'</span> });
+
+<span class="cm">// ── DELETE — remove data</span>
+<span class="kw">await</span> axios.<span class="fn">delete</span>(<span class="str">'/api/users/1'</span>);
+
+<span class="cm">// ── INTERCEPTORS — run code before every request</span>
+axios.interceptors.request.<span class="fn">use</span>(config <span class="op">=&gt;</span> {
+  config.headers.Authorization <span class="op">=</span> <span class="str">`Bearer ${token}`</span>;
+  <span class="kw">return</span> config;
+});
+
+<span class="cm">// ── ERROR HANDLING</span>
+<span class="kw">try</span> {
+  <span class="kw">const</span> res <span class="op">=</span> <span class="kw">await</span> axios.<span class="fn">get</span>(<span class="str">'/api/data'</span>);
+} <span class="kw">catch</span> (error) {
+  <span class="kw">if</span> (error.response) {
+    console.<span class="fn">log</span>(<span class="str">'Server error:'</span>, error.response.status);
+  } <span class="kw">else</span> {
+    console.<span class="fn">log</span>(<span class="str">'Network error'</span>);
+  }
+}</pre>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>🟢 Axios vs Fetch:</strong> The built-in <code>fetch()</code> works fine for basic requests. Use Axios when you need interceptors, automatic JSON parsing, request cancellation, or better error handling.
+  </div>
+</div>
+
+<!-- ══════════ UTILS ══════════ -->
+<div class="section" id="utils">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(67,233,123,.15);">🔧</div>
+    <div>
+      <h2>Utility Libraries</h2>
+      <p>Lodash, date-fns — your everyday Swiss Army knife for data manipulation.</p>
+    </div>
+  </div>
+
+  <div class="code-section">
+    <h3>Lodash — Array, Object & String Helpers</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">LODASH — MOST USED FUNCTIONS</span>
+      </div>
+      <pre><span class="kw">import</span> _ <span class="kw">from</span> <span class="str">'lodash'</span>;
+
+<span class="kw">const</span> users <span class="op">=</span> [
+  { name: <span class="str">'Ravi'</span>, age: <span class="num">22</span>, city: <span class="str">'Delhi'</span> },
+  { name: <span class="str">'Priya'</span>, age: <span class="num">25</span>, city: <span class="str">'Mumbai'</span> },
+  { name: <span class="str">'Rahul'</span>, age: <span class="num">22</span>, city: <span class="str">'Delhi'</span> },
+];
+
+<span class="cm">// ── GROUP BY a field</span>
+_.<span class="fn">groupBy</span>(users, <span class="str">'city'</span>);
+<span class="cm">// { Delhi: [Ravi, Rahul], Mumbai: [Priya] }</span>
+
+<span class="cm">// ── SORT BY field</span>
+_.<span class="fn">sortBy</span>(users, <span class="str">'age'</span>);
+
+<span class="cm">// ── UNIQUE values</span>
+_.<span class="fn">uniqBy</span>(users, <span class="str">'age'</span>);  <span class="cm">// removes duplicate ages</span>
+
+<span class="cm">// ── DEEP CLONE (not a shallow copy!)</span>
+<span class="kw">const</span> copy <span class="op">=</span> _.<span class="fn">cloneDeep</span>(users);
+
+<span class="cm">// ── CHUNK array into groups</span>
+_.<span class="fn">chunk</span>([<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>,<span class="num">4</span>,<span class="num">5</span>], <span class="num">2</span>);   <span class="cm">// [[1,2],[3,4],[5]]</span>
+
+<span class="cm">// ── DEBOUNCE — delay function call</span>
+<span class="kw">const</span> search <span class="op">=</span> _.<span class="fn">debounce</span>(<span class="fn">fetchResults</span>, <span class="num">300</span>);
+<span class="cm">// search() will only fire 300ms after last call</span>
+
+<span class="cm">// ── THROTTLE — limit call frequency</span>
+<span class="kw">const</span> onScroll <span class="op">=</span> _.<span class="fn">throttle</span>(<span class="fn">handleScroll</span>, <span class="num">200</span>);
+
+<span class="cm">// ── PICK / OMIT from object</span>
+_.<span class="fn">pick</span>(users[<span class="num">0</span>], [<span class="str">'name'</span>, <span class="str">'age'</span>]);   <span class="cm">// { name, age }</span>
+_.<span class="fn">omit</span>(users[<span class="num">0</span>], [<span class="str">'city'</span>]);           <span class="cm">// { name, age }</span></pre>
+    </div>
+  </div>
+
+  <div class="code-section">
+    <h3>date-fns — Working with Dates</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">DATE-FNS — DATE MANIPULATION</span>
+      </div>
+      <pre><span class="kw">import</span> { format, addDays, differenceInDays, isAfter } <span class="kw">from</span> <span class="str">'date-fns'</span>;
+
+<span class="kw">const</span> today <span class="op">=</span> <span class="kw">new</span> <span class="fn">Date</span>();
+
+<span class="cm">// ── FORMAT dates beautifully</span>
+<span class="fn">format</span>(today, <span class="str">'dd MMM yyyy'</span>);   <span class="cm">// "09 May 2024"</span>
+<span class="fn">format</span>(today, <span class="str">'EEEE'</span>);          <span class="cm">// "Thursday"</span>
+<span class="fn">format</span>(today, <span class="str">'hh:mm a'</span>);      <span class="cm">// "03:45 PM"</span>
+
+<span class="cm">// ── ADD / SUBTRACT time</span>
+<span class="fn">addDays</span>(today, <span class="num">7</span>);             <span class="cm">// 7 days from now</span>
+<span class="fn">addDays</span>(today, <span class="op">-</span><span class="num">1</span>);            <span class="cm">// yesterday</span>
+
+<span class="cm">// ── DIFFERENCE between dates</span>
+<span class="fn">differenceInDays</span>(examDate, today);   <span class="cm">// days until exam</span>
+
+<span class="cm">// ── COMPARE dates</span>
+<span class="fn">isAfter</span>(examDate, today);     <span class="cm">// true if exam is in future</span></pre>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ ANIMATION ══════════ -->
+<div class="section" id="animation">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(247,151,30,.15);">✨</div>
+    <div>
+      <h2>Animation Libraries</h2>
+      <p>GSAP, Anime.js, Framer Motion — bring your UI to life.</p>
+    </div>
+  </div>
+
+  <div class="code-section">
+    <h3>GSAP — Professional Grade Animation</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">GSAP — CORE USAGE</span>
+      </div>
+      <pre><span class="kw">import</span> gsap <span class="kw">from</span> <span class="str">'gsap'</span>;
+
+<span class="cm">// ── ANIMATE a single element</span>
+gsap.<span class="fn">to</span>(<span class="str">'#box'</span>, {
+  x: <span class="num">200</span>,          <span class="cm">// move right 200px</span>
+  opacity: <span class="num">0</span>,      <span class="cm">// fade out</span>
+  duration: <span class="num">1</span>,     <span class="cm">// over 1 second</span>
+  ease: <span class="str">'bounce'</span>   <span class="cm">// bounce easing</span>
+});
+
+<span class="cm">// ── STAGGER — animate multiple elements one by one</span>
+gsap.<span class="fn">to</span>(<span class="str">'.card'</span>, {
+  y: <span class="op">-</span><span class="num">20</span>,
+  opacity: <span class="num">1</span>,
+  stagger: <span class="num">0.1</span>,    <span class="cm">// each card starts 0.1s after last</span>
+  duration: <span class="num">0.6</span>
+});
+
+<span class="cm">// ── TIMELINE — sequence of animations</span>
+<span class="kw">const</span> tl <span class="op">=</span> gsap.<span class="fn">timeline</span>();
+tl.<span class="fn">to</span>(<span class="str">'#hero'</span>, { opacity: <span class="num">1</span>, y: <span class="num">0</span>, duration: <span class="num">0.8</span> })
+  .<span class="fn">to</span>(<span class="str">'#nav'</span>,  { opacity: <span class="num">1</span>, duration: <span class="num">0.4</span> })
+  .<span class="fn">to</span>(<span class="str">'#cta'</span>,  { scale: <span class="num">1</span>, duration: <span class="num">0.3</span> });</pre>
+    </div>
+  </div>
+
+  <div class="code-section">
+    <h3>Anime.js — Lightweight Alternative</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">ANIME.JS</span>
+      </div>
+      <pre><span class="kw">import</span> anime <span class="kw">from</span> <span class="str">'animejs'</span>;
+
+<span class="fn">anime</span>({
+  targets: <span class="str">'.circle'</span>,
+  translateX: <span class="num">250</span>,
+  rotate: <span class="str">'1turn'</span>,
+  backgroundColor: <span class="str">'#ff6584'</span>,
+  duration: <span class="num">800</span>,
+  easing: <span class="str">'easeInOutQuad'</span>,
+  loop: <span class="kw">true</span>,
+  direction: <span class="str">'alternate'</span>  <span class="cm">// go back and forth</span>
+});</pre>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ TESTING ══════════ -->
+<div class="section" id="testing">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(108,99,255,.15);">🧪</div>
+    <div>
+      <h2>Testing Libraries</h2>
+      <p>Jest, Vitest, Cypress — ensure your code actually works.</p>
+    </div>
+  </div>
+
+  <div class="intro-box">
+    Testing means writing code that <strong>checks your code</strong>. You describe what a function should do, and the test library runs it automatically and tells you if something broke. When you add new features, tests protect you from accidentally breaking old ones.
+  </div>
+
+  <div class="code-section">
+    <h3>Jest — Unit Testing</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">JEST — WRITING YOUR FIRST TEST</span>
+      </div>
+      <pre><span class="cm">// math.js — the code you want to test</span>
+<span class="kw">function</span> <span class="fn">add</span>(a, b) { <span class="kw">return</span> a <span class="op">+</span> b; }
+<span class="kw">function</span> <span class="fn">divide</span>(a, b) {
+  <span class="kw">if</span> (b <span class="op">===</span> <span class="num">0</span>) <span class="kw">throw new</span> <span class="fn">Error</span>(<span class="str">'Cannot divide by zero'</span>);
+  <span class="kw">return</span> a <span class="op">/</span> b;
+}
+
+<span class="cm">// math.test.js — the tests</span>
+<span class="fn">test</span>(<span class="str">'adds two numbers correctly'</span>, () <span class="op">=&gt;</span> {
+  <span class="fn">expect</span>(<span class="fn">add</span>(<span class="num">2</span>, <span class="num">3</span>)).<span class="fn">toBe</span>(<span class="num">5</span>);        <span class="cm">// ✅ passes</span>
+  <span class="fn">expect</span>(<span class="fn">add</span>(<span class="op">-</span><span class="num">1</span>, <span class="num">1</span>)).<span class="fn">toBe</span>(<span class="num">0</span>);       <span class="cm">// ✅ passes</span>
+});
+
+<span class="fn">test</span>(<span class="str">'throws error on divide by zero'</span>, () <span class="op">=&gt;</span> {
+  <span class="fn">expect</span>(() <span class="op">=&gt;</span> <span class="fn">divide</span>(<span class="num">5</span>, <span class="num">0</span>)).<span class="fn">toThrow</span>(<span class="str">'Cannot divide by zero'</span>);
+});
+
+<span class="cm">// Run tests: npx jest</span>
+<span class="cm">// Output: ✓ adds two numbers correctly</span>
+<span class="cm">//         ✓ throws error on divide by zero</span></pre>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ COMPARE ══════════ -->
+<div class="section" id="compare">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(251,191,36,.15);">⚖️</div>
+    <div>
+      <h2>Side-by-Side Comparison</h2>
+      <p>How do the major libraries stack up against each other?</p>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Library</th>
+          <th>Category</th>
+          <th>Learning Curve</th>
+          <th>Bundle Size</th>
+          <th>Job Demand</th>
+          <th>Best For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>React</strong></td>
+          <td>UI</td>
+          <td><span class="mid">Medium</span></td>
+          <td><span class="mid">~45KB</span></td>
+          <td><span class="yes">⬆⬆⬆ Very High</span></td>
+          <td>SPAs, complex UIs, large teams</td>
+        </tr>
+        <tr>
+          <td><strong>Vue</strong></td>
+          <td>UI</td>
+          <td><span class="yes">Easy</span></td>
+          <td><span class="yes">~33KB</span></td>
+          <td><span class="mid">⬆⬆ High</span></td>
+          <td>Beginners, progressive adoption</td>
+        </tr>
+        <tr>
+          <td><strong>Svelte</strong></td>
+          <td>UI</td>
+          <td><span class="yes">Easy</span></td>
+          <td><span class="yes">~2KB</span></td>
+          <td><span class="mid">⬆ Growing</span></td>
+          <td>Performance-critical apps</td>
+        </tr>
+        <tr>
+          <td><strong>jQuery</strong></td>
+          <td>DOM</td>
+          <td><span class="yes">Very Easy</span></td>
+          <td><span class="no">~87KB</span></td>
+          <td><span class="no">↓ Legacy</span></td>
+          <td>WordPress, legacy projects</td>
+        </tr>
+        <tr>
+          <td><strong>Axios</strong></td>
+          <td>HTTP</td>
+          <td><span class="yes">Very Easy</span></td>
+          <td><span class="yes">~13KB</span></td>
+          <td><span class="yes">⬆⬆ High</span></td>
+          <td>API calls everywhere</td>
+        </tr>
+        <tr>
+          <td><strong>Lodash</strong></td>
+          <td>Utility</td>
+          <td><span class="yes">Easy</span></td>
+          <td><span class="mid">~72KB (tree-shakeable)</span></td>
+          <td><span class="yes">⬆⬆ High</span></td>
+          <td>Complex data manipulation</td>
+        </tr>
+        <tr>
+          <td><strong>GSAP</strong></td>
+          <td>Animation</td>
+          <td><span class="mid">Medium</span></td>
+          <td><span class="mid">~60KB</span></td>
+          <td><span class="mid">⬆ Moderate</span></td>
+          <td>Professional animations</td>
+        </tr>
+        <tr>
+          <td><strong>D3.js</strong></td>
+          <td>Charts</td>
+          <td><span class="no">Steep</span></td>
+          <td><span class="no">~500KB</span></td>
+          <td><span class="mid">⬆ Moderate</span></td>
+          <td>Custom data visualizations</td>
+        </tr>
+        <tr>
+          <td><strong>Jest</strong></td>
+          <td>Testing</td>
+          <td><span class="yes">Easy</span></td>
+          <td>Dev only</td>
+          <td><span class="yes">⬆⬆ High</span></td>
+          <td>Unit & integration testing</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════ WHEN ══════════ -->
+<div class="section" id="when">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(67,233,123,.15);">🧭</div>
+    <div>
+      <h2>When to Use What</h2>
+      <p>A practical decision guide — stop guessing, start building.</p>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Your Task</th><th>Use This</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Build a web app with components</td><td><strong>React</strong> or <strong>Vue</strong></td></tr>
+        <tr><td>Call an API / fetch JSON data</td><td><strong>Axios</strong> or <strong>fetch()</strong></td></tr>
+        <tr><td>Manipulate arrays / objects</td><td><strong>Lodash</strong> or modern JS</td></tr>
+        <tr><td>Work with dates / times</td><td><strong>date-fns</strong> or <strong>Day.js</strong></td></tr>
+        <tr><td>Add animations and motion</td><td><strong>GSAP</strong> (complex) or <strong>CSS</strong> (simple)</td></tr>
+        <tr><td>Show charts from data</td><td><strong>Chart.js</strong> (easy) or <strong>D3.js</strong> (custom)</td></tr>
+        <tr><td>Handle form + validation</td><td><strong>React Hook Form</strong> + <strong>Zod</strong></td></tr>
+        <tr><td>Write tests for your code</td><td><strong>Jest</strong> or <strong>Vitest</strong></td></tr>
+        <tr><td>Modify a WordPress theme</td><td><strong>jQuery</strong></td></tr>
+        <tr><td>3D graphics in browser</td><td><strong>Three.js</strong></td></tr>
+        <tr><td>End-to-end browser testing</td><td><strong>Cypress</strong> or <strong>Playwright</strong></td></tr>
+        <tr><td>Manage global app state</td><td><strong>Redux</strong>, <strong>Zustand</strong>, or <strong>Pinia</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tip">
+    <strong>🟢 Recommended Learning Path for Beginners:</strong><br>
+    Start with <strong>HTML + CSS + Vanilla JS</strong> → then <strong>Axios</strong> (API calls) → then <strong>React</strong> (UI) → then <strong>React Hook Form</strong> (forms) → then <strong>Jest</strong> (testing) → then <strong>Lodash</strong> (utilities). This order follows real job requirements.
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Common Mistake:</strong> Don't jump straight to React without knowing JavaScript basics. Libraries are built ON TOP of JS — if your JS is weak, the library will confuse you. Spend at least 3–4 weeks on core JS first.
+  </div>
+</div>
+
+</main>
+
+<script src="app.js"></script>
+
+</body>
+</html
