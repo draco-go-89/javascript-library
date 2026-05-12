@@ -29,11 +29,13 @@
   <button class="tab" onclick="show('compare')">⚖️ Compare</button>
   <button class="tab" onclick="show('when')">🧭 When to Use What</button>
 
-  <!-- ══════════ NEW: JS FUNDAMENTALS TABS (does not affect existing tabs) ══════════ -->
-  <button class="tab" onclick="show('jsfundamentals')">🧠 JavaScript Fundamentals</button>
+<!-- ══════════ JavaScript Fundamentals (NEW) ══════════ -->
+  <button class="tab" onclick="show('jsbasics')">🧠 JavaScript Fundamentals</button>
+
   <button class="tab" onclick="show('jsasync')">⏳ Async & Event Loop</button>
   <button class="tab" onclick="show('jsdom')">📄 DOM Basics (Vanilla)</button>
   <button class="tab" onclick="show('jsoop')">🧱 Prototypes & OOP</button>
+
 </div>
 
 <main>
@@ -1199,15 +1201,17 @@ tl.<span class="fn">to</span>(<span class="str">'#hero'</span>, { opacity: <span
   </div>
 </div>
 
-<!-- ══════════ JS FUNDAMENTALS (NEW) ══════════ -->
-<div class="section" id="jsfundamentals">
+<!-- ══════════ JS BASICS (NEW) ══════════ -->
+<div class="section" id="jsbasics">
+
   <div class="section-header">
     <div class="section-icon" style="background:rgba(108,99,255,.15);">🧠</div>
     <div>
-      <h2>JavaScript Fundamentals (Weeb-Edition)</h2>
-      <p>Core language concepts that every library builds on: data, functions, scope, and behavior.</p>
+      <h2>JavaScript Basics (Beginner → Pro)</h2>
+      <p>A complete JS “core kit” you’ll need before using any library or framework.</p>
     </div>
   </div>
+
 
   <div class="intro-box">
     In JavaScript, <strong>libraries are power-ups</strong>. But the engine (JavaScript itself) is what decides how your code actually behaves. This tab focuses on the “fundamentals roster” you need before React/Vue/Axios feel natural.
