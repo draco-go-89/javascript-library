@@ -28,9 +28,16 @@
   <button class="tab" onclick="show('testing')">🧪 Testing</button>
   <button class="tab" onclick="show('compare')">⚖️ Compare</button>
   <button class="tab" onclick="show('when')">🧭 When to Use What</button>
+
+  <!-- ══════════ NEW: JS FUNDAMENTALS TABS (does not affect existing tabs) ══════════ -->
+  <button class="tab" onclick="show('jsfundamentals')">🧠 JavaScript Fundamentals</button>
+  <button class="tab" onclick="show('jsasync')">⏳ Async & Event Loop</button>
+  <button class="tab" onclick="show('jsdom')">📄 DOM Basics (Vanilla)</button>
+  <button class="tab" onclick="show('jsoop')">🧱 Prototypes & OOP</button>
 </div>
 
 <main>
+
 
 <!-- ══════════ BASICS ══════════ -->
 <div class="section active" id="basics">
@@ -1189,6 +1196,341 @@ tl.<span class="fn">to</span>(<span class="str">'#hero'</span>, { opacity: <span
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+<!-- ══════════ JS FUNDAMENTALS (NEW) ══════════ -->
+<div class="section" id="jsfundamentals">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(108,99,255,.15);">🧠</div>
+    <div>
+      <h2>JavaScript Fundamentals (Weeb-Edition)</h2>
+      <p>Core language concepts that every library builds on: data, functions, scope, and behavior.</p>
+    </div>
+  </div>
+
+  <div class="intro-box">
+    In JavaScript, <strong>libraries are power-ups</strong>. But the engine (JavaScript itself) is what decides how your code actually behaves. This tab focuses on the “fundamentals roster” you need before React/Vue/Axios feel natural.
+    <br><br>
+    <strong>How to read this tab:</strong>
+    <ul>
+      <li><strong>Definition</strong> first (what the concept is).</li>
+      <li><strong>Explanation</strong> second (why it works the way it does).</li>
+      <li><strong>Example</strong> third (a tiny snippet you can run / mentally simulate).</li>
+    </ul>
+    You’re basically studying the “rules of the game”.
+  </div>
+
+
+  <div class="code-section">
+    <h3>1) Values, Variables, and Types</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">VALUES + TYPES + LET/CONST</span>
+      </div>
+      <pre><span class="cm">// primitives</span>
+<span class="kw">let</span> age <span class="op">=</span> <span class="num">22</span>;                 <span class="cm">// number</span>
+<span class="kw">let</span> name <span class="op">=</span> <span class="str">'Ravi'</span>;             <span class="cm">// string</span>
+<span class="kw">let</span> ok <span class="op">=</span> <span class="kw">true</span>;               <span class="cm">// boolean</span>
+<span class="kw">let</span> nothing <span class="op">=</span> <span class="kw">null</span>;           <span class="cm">// intentional “no value”</span>
+<span class="kw">let</span> missing;                  <span class="cm">// undefined (declared but not set)</span>
+
+<span class="cm">// special objects</span>
+<span class="kw">const</span> user <span class="op">=</span> { id: <span class="num">1</span>, role: <span class="str">'mage'</span> }; <span class="cm">// object (reference value)</span>
+
+<span class="cm">// let vs const</span>
+<span class="kw">let</span> counter <span class="op">=</span> <span class="num">0</span>;
+counter <span class="op">=</span> counter <span class="op">+</span> <span class="num">1</span>;
+
+<span class="kw">const</span> hero <span class="op">=</span> { hp: <span class="num">100</span> };
+hero.hp <span class="op">=</span> hero.hp <span class="op">-</span> <span class="num">10</span>; <span class="cm">// allowed: object contents can change</span>
+<span class="cm">// hero = {...} // ❌ not allowed: const can’t reassign</span></pre>
+    </div>
+
+    <div class="tip">
+      <strong>Educational cheat-code:</strong> JavaScript has <strong>dynamic typing</strong> (types are known at runtime), but it’s not “wild”. You still need to reason about <em>value vs reference</em> for objects.
+    </div>
+  </div>
+
+  <div class="code-section">
+    <h3>2) Equality: == vs ===</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">EQUALITY (TRUTH TABLE FOR HUMANITY)</span>
+      </div>
+      <pre><span class="cm">// strict equality compares type + value</span>
+<span class="kw">console</span>.<span class="fn">log</span>(<span class="num">0</span> <span class="op">===</span> <span class="str">'0'</span>); <span class="cm">// false</span>
+
+<span class="cm">// loose equality may coerce types</span>
+<span class="kw">console</span>.<span class="fn">log</span>(<span class="num">0</span> <span class="op">==</span> <span class="str">'0'</span>);  <span class="cm">// true</span>
+
+<span class="cm">// null/undefined corner</span>
+<span class="kw">console</span>.<span class="fn">log</span>(<span class="kw">null</span> <span class="op">==</span> <span class="kw">undefined</span>); <span class="cm">// true</span>
+<span class="kw">console</span>.<span class="fn">log</span>(<span class="kw">null</span> <span class="op">===</span> <span class="kw">undefined</span>); <span class="cm">// false</span></pre>
+    </div>
+    <div class="tip">
+      <strong>Definition:</strong> <code>===</code> is <em>strict equality</em>: it checks both <strong>type</strong> and <strong>value</strong>. <code>==</code> is <em>loose equality</em>: it may <strong>convert</strong> one side before comparing.
+      <br><br>
+      <strong>Why it matters:</strong> Type conversions are where bugs hide (especially when data comes from HTML forms or APIs as strings).
+    </div>
+    <div class="warn">
+      <strong>⚠️ Rule:</strong> In educational codebases, prefer <strong>===</strong> to avoid surprise coercions.
+    </div>
+  </div>
+
+
+  <div class="code-section">
+    <h3>3) Functions as First-Class Citizens</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">FUNCTIONS + RETURN VALUES</span>
+      </div>
+      <pre><span class="cm">// function declaration</span>
+<span class="kw">function</span> <span class="fn">add</span>(a, b) {
+  <span class="kw">return</span> a <span class="op">+</span> b;
+}
+
+<span class="cm">// function expression</span>
+<span class="kw">const</span> sub <span class="op">=</span> <span class="kw">function</span>(a, b) {
+  <span class="kw">return</span> a <span class="op">-</span> b;
+};
+
+<span class="cm">// arrow function (short + lexical this)</span>
+<span class="kw">const</span> mul <span class="op">=</span> (a, b) <span class="op">=></span> a <span class="op">*</span> b;
+
+<span class="cm">// functions are values (you can pass them)</span>
+<span class="kw">const</span> apply <span class="op">=</span> (fn, x, y) <span class="op">=></span> fn(x, y);
+
+<span class="kw">console</span>.<span class="fn">log</span>(apply(add, <span class="num">2</span>, <span class="num">3</span>)); <span class="cm">// 5</span></pre>
+    </div>
+  </div>
+
+  <div class="code-section">
+    <h3>4) Scope & Closures (The Real “Power-Up”)</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">CLOSURE: A FUNCTION REMEMBERS VARIABLES</span>
+      </div>
+      <pre><span class="cm">// outer scope variable</span>
+<span class="kw">function</span> <span class="fn">makeCounter</span>() {
+  <span class="kw">let</span> count <span class="op">=</span> <span class="num">0</span>;
+
+  <span class="cm">// inner function closes over `count`</span>
+  <span class="kw">return</span> <span class="kw">function</span>() {
+    count <span class="op">=</span> count <span class="op">+</span> <span class="num">1</span>;
+    <span class="kw">return</span> count;
+  };
+}
+
+<span class="kw">const</span> c <span class="op">=</span> makeCounter();
+<span class="kw">console</span>.<span class="fn">log</span>(c()); <span class="cm">// 1</span>
+<span class="kw">console</span>.<span class="fn">log</span>(c()); <span class="cm">// 2</span></pre>
+    </div>
+    <div class="tip">
+      <strong>Why it matters:</strong> closures are the mechanism behind many async patterns and “stateful functions” you’ll meet in real apps.
+    </div>
+  </div>
+
+</div>
+
+<div class="section" id="jsasync">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(56,189,248,.15);">⏳</div>
+    <div>
+      <h2>Async & Event Loop</h2>
+      <p>Promises, async/await, and how JavaScript actually schedules your code.</p>
+    </div>
+  </div>
+
+  <div class="intro-box">
+    JavaScript is single-threaded for your code, but it’s not single-task. The <strong>event loop</strong> coordinates work: timers, DOM events, network callbacks, and microtasks (promises).
+  </div>
+
+  <div class="code-section">
+    <h3>1) Promises: The “Ticket” for Future Results</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">PROMISES: PENDING → FULFILLED/REJECTED</span>
+      </div>
+      <pre><span class="kw">const</span> wait <span class="op">=</span> (ms) <span class="op">=></span> <span class="kw">new</span> Promise((resolve) <span class="op">=></span> {
+  setTimeout(() <span class="op">=></span> resolve(ms), ms);
+});
+
+<span class="cm">// chaining</span>
+wait(<span class="num">500</span>)
+  .then((ms) <span class="op">=></span> ms <span class="op">*</span> <span class="num">2</span>)
+  .then((value) <span class="op">=></span> {
+    <span class="kw">console</span>.<span class="fn">log</span>(value); <span class="cm">// 1000</span>
+  });</pre>
+    </div>
+    <div class="warn">
+      <strong>⚠️ Common mistake:</strong> forgetting to return inside a <code>.then()</code> chain causes “lost” results.
+    </div>
+  </div>
+
+  <div class="code-section">
+    <h3>2) async/await: Synchronous Syntax for Async Flow</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">ASYNC/AWAIT EXAMPLE</span>
+      </div>
+      <pre><span class="kw">async</span> <span class="kw">function</span> <span class="fn">loadUser</span>(id) {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> res <span class="op">=</span> <span class="kw">await</span> fetch(<span class="str">`/api/users/${id}`</span>);
+    <span class="kw">if</span> (!res.ok) <span class="kw">throw</span> <span class="kw">new</span> Error(<span class="str">`HTTP ${res.status}`</span>);
+    <span class="kw">const</span> data <span class="op">=</span> <span class="kw">await</span> res.json();
+    <span class="kw">return</span> data;
+  } <span class="kw">catch</span> (e) {
+    <span class="kw">console</span>.<span class="fn">error</span>(e);
+    <span class="kw">return</span> null;
+  }
+}</pre>
+    </div>
+  </div>
+
+  <div class="code-section">
+    <h3>3) Event Loop in 10 Seconds (Microtasks vs Macrotasks)</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">OUTPUT ORDER TRICK</span>
+      </div>
+      <pre><span class="kw">console</span>.<span class="fn">log</span>(<span class="str">'A'</span>);
+
+setTimeout(() <span class="op">=></span> <span class="kw">console</span>.<span class="fn">log</span>(<span class="str">'B (timeout)'</span>), <span class="num">0</span>);
+
+Promise.resolve().then(() <span class="op">=></span> <span class="kw">console</span>.<span class="fn">log</span>(<span class="str">'C (promise)'</span>));
+
+<span class="kw">console</span>.<span class="fn">log</span>(<span class="str">'D'</span>);
+
+<span class="cm">// Expected order:</span>
+<span class="cm">// A</span>
+<span class="cm">// D</span>
+<span class="cm">// C</span>
+<span class="cm">// B (timeout)</span></pre>
+    </div>
+    <div class="tip">
+      <strong>Takeaway:</strong> promise callbacks (microtasks) run <em>before</em> timer callbacks (macrotasks).
+    </div>
+  </div>
+</div>
+
+<div class="section" id="jsdom">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(255,101,132,.15);">📄</div>
+    <div>
+      <h2>DOM Basics (Vanilla JS)</h2>
+      <p>How to select elements, listen to events, update UI, and avoid common pitfalls.</p>
+    </div>
+  </div>
+
+  <div class="intro-box">
+    Even if you use React/Vue, you still need DOM intuition: what an element is, how events bubble, and how updates affect performance.
+  </div>
+
+  <div class="code-section">
+    <h3>1) Selecting Elements</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">QUERY SELECTORS</span>
+      </div>
+      <pre><span class="kw">const</span> title <span class="op">=</span> document.<span class="fn">querySelector</span>(<span class="str">'#title'</span>);
+<span class="kw">const</span> items <span class="op">=</span> document.<span class="fn">querySelectorAll</span>(<span class="str">'.item'</span>);
+
+<span class="cm">// querySelectorAll returns a NodeList</span>
+items.forEach((el) <span class="op">=></span> {
+  el.<span class="fn">style</span>.<span class="fn">color</span> <span class="op">=</span> <span class="str">'red'</span>;
+});</pre>
+    </div>
+  </div>
+
+  <div class="code-section">
+    <h3>2) Events: addEventListener + Bubbling</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">EVENTS</span>
+      </div>
+      <pre><span class="kw">const</span> btn <span class="op">=</span> document.<span class="fn">querySelector</span>(<span class="str">'#btn'</span>);
+
+btn.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, () <span class="op">=></span> {
+  <span class="kw">alert</span>(<span class="str">'Clicked!'</span>);
+});
+
+<span class="cm">// event delegation (listen once)</span>
+<span class="kw">const</span> list <span class="op">=</span> document.<span class="fn">querySelector</span>(<span class="str">'#list'</span>);
+list.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, (e) <span class="op">=></span> {
+  <span class="kw">const</span> li <span class="op">=</span> e.target.<span class="fn">closest</span>(<span class="str">'li'</span>);
+  <span class="kw">if</span> (!li) <span class="kw">return</span>;
+  <span class="kw">console</span>.<span class="fn">log</span>(li.<span class="fn">textContent</span>);
+});</pre>
+    </div>
+    <div class="tip">
+      <strong>Delegation tip:</strong> it’s the DOM version of “don’t attach thousands of listeners.”
+    </div>
+  </div>
+</div>
+
+<div class="section" id="jsoop">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(67,233,123,.15);">🧱</div>
+    <div>
+      <h2>Prototypes & OOP (Modern JavaScript)</h2>
+      <p>JavaScript is prototype-based. Classes are syntax sugar on top.</p>
+    </div>
+  </div>
+
+  <div class="intro-box">
+    Learn the real model: objects link to prototypes, and method lookup climbs the prototype chain. Then you can understand <strong>class</strong>, <strong>extends</strong>, and <strong>super</strong> correctly.
+  </div>
+
+  <div class="code-section">
+    <h3>1) Prototype Chain Lookup</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">INHERITANCE WITH OBJECTS</span>
+      </div>
+      <pre><span class="kw">const</span> animal <span class="op">=</span> {
+  speak() { <span class="kw">return</span> <span class="str">'...'</span>; }
+};
+
+<span class="kw">const</span> cat <span class="op">=</span> Object.<span class="fn">create</span>(animal);
+cat.speak <span class="op">=</span> () <span class="op">=></span> <span class="str">'meow'</span>;
+
+<span class="kw">console</span>.<span class="fn">log</span>(cat.speak());</pre>
+    </div>
+  </div>
+
+  <div class="code-section">
+    <h3>2) class Syntax (Sugar, Not a New Engine)</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="code-title">CLASSES + INHERITANCE</span>
+      </div>
+      <pre><span class="kw">class</span> <span class="fn">Animal</span> {
+  <span class="kw">constructor</span>(name) { <span class="kw">this</span>.name <span class="op">=</span> name; }
+  speak() { <span class="kw">return</span> <span class="str">`${this.name} makes noise`</span>; }
+}
+
+<span class="kw">class</span> <span class="fn">Cat</span> <span class="kw">extends</span> Animal {
+  speak() { <span class="kw">return</span> <span class="str">`${this.name}: meow!`</span>; }
+}
+
+<span class="kw">const</span> c <span class="op">=</span> <span class="kw">new</span> Cat(<span class="str">'Kuro'</span>);
+<span class="kw">console</span>.<span class="fn">log</span>(c.speak());</pre>
+    </div>
+    <div class="warn">
+      <strong>⚠️ Note:</strong> classes use prototypes under the hood. If you understand prototypes, inheritance becomes predictable.
+    </div>
   </div>
 </div>
 
