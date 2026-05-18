@@ -76,5 +76,13 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-
+{
+  // Show the first tab by default
+  document.addEventListener('DOMContentLoaded', () => {
+    const firstTab = document.querySelector('.tab');
+    if (firstTab) {
+      firstTab.click();
+    }
+  });   
+}
 
